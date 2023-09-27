@@ -74,13 +74,13 @@
                         <p class="fw-bold text-secondary">Suggestion For You</p>
                     </div>
                     <div class="col text-end">
-                        <a href="#" class="fw-bold text-dark text-decoration-none">
+                        <a href="{{route('home.suggested')}}" class="fw-bold text-dark text-decoration-none">
                             See all
                         </a>
                     </div>
                 </div>
                 @foreach ($suggested_users as $user)
-                    <div class="row align-items-conter mb-3">
+                    <div class="row align-items-center mb-3">
                         <div class="col-auto">
                             <a href="{{ route('profile.show', $user->id) }}">
                                 @if ($user->avatar)

@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('index');
 
+    Route::get('/suggested', [HomeController::class, 'suggested'])->name('home.suggested');
+
     // thisroute will serve view>user>create.blade.php
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
     // This route will save a post

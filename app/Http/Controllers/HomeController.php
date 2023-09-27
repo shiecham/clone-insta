@@ -126,4 +126,12 @@ class HomeController extends Controller
             ->with('all_posts', $all_posts)
             ->with('suggested_users', $suggested_users);
     }
+
+    public function suggested(){
+        $suggested_users = $this->getSuggestedUsers();
+
+        return view('users.suggested')
+            ->with('suggested_users', $suggested_users);
+
+    }
 }
