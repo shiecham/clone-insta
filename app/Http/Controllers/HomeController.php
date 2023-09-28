@@ -59,7 +59,8 @@ class HomeController extends Controller
          *
          */
 
-        return array_slice($suggested_users, 0, 10);
+        // return array_slice($suggested_users, 0, 10);
+        return $suggested_users;
     }
 
     private function getHomePosts()
@@ -120,11 +121,12 @@ class HomeController extends Controller
         // $all_posts = $this->post->latest()->get();
         $all_posts = $this->getHomePosts();
         $suggested_users = $this->getSuggestedUsers();
+        $get_10_suggested_users = array_slice($suggested_users, 0, 10);
 
 
         return view('users.home')
             ->with('all_posts', $all_posts)
-            ->with('suggested_users', $suggested_users);
+            ->with('suggested_users', $get_10_suggested_users);
     }
 
     public function suggested(){
