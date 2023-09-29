@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowController extends Controller
 {
-    //constructor
-
     private $follow;
 
     public function __construct(Follow $follow)

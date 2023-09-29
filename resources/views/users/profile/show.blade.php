@@ -4,9 +4,6 @@
 
 @section('content')
     @include('users.profile.header')
-
-    {{-- Show all posts in here --}}
-    {{-- margin-top:100px --}}
     <div class="show-post-layout">
         @if ($user->posts->isNotEmpty())
             <div class="row">

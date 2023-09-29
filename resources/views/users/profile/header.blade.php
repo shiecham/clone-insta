@@ -9,17 +9,14 @@
     </div>
     <div class="col-8">
         <div class="row mb-3">
-            {{-- name --}}
             <div class="col-auto">
                 <h2 class="display-6 mb-0">{{ $user->name }}</h2>
             </div>
-            {{-- button Edit/Follow --}}
             <div class="col-auto p-2">
                 @if (Auth::user()->id === $user->id)
                     <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-sm fw-bold">Edit
                         Profile</a>
                 @else
-                    {{-- <p>HEllO  {{$user->isFollowed()}}</p> --}}
                     @if ($user->isFollowed())
                         <form action="{{ route('follow.destroy', $user->id) }}" method="POST" class="d-inline">
                             @csrf
@@ -36,29 +33,26 @@
                             </button>
                         </form>
                     @endif
-
                 @endif
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-auto">
-                <a href="{{route('profile.show',$user->id)}}" class="text-decoration-none text-dark">
+                <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-dark">
                     <strong>{{ $user->posts->count() }}</strong> posts
                 </a>
             </div>
             <div class="col-auto">
-                <a href="{{route('profile.followers', $user->id)}}" class="text-decoration-none text-dark">
-                    <strong>{{$user->followers->count()}}</strong> followers
+                <a href="{{ route('profile.followers', $user->id) }}" class="text-decoration-none text-dark">
+                    <strong>{{ $user->followers->count() }}</strong> followers
                 </a>
             </div>
             <div class="col-auto">
-                <a href = {{route('profile.following', $user->id)}} class="text-decoration-none text-dark">
-                    <strong>{{$user->following->count()}}</strong> following
+                <a href={{ route('profile.following', $user->id) }} class="text-decoration-none text-dark">
+                    <strong>{{ $user->following->count() }}</strong> following
                 </a>
             </div>
         </div>
-
         <p class="fw-bold">{{ $user->introduction }}</p>
     </div>
-
 </div>

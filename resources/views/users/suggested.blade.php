@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Suggested all')
 
 @section('content')
 
@@ -14,7 +14,6 @@
                         </p>
                     </div>
                 </div>
-
                 @foreach ($suggested_users as $user)
                     <div class="row align-items-center mb-3">
                         <div class="col-4 col-md-2">
@@ -27,7 +26,6 @@
                                 @endif
                             </a>
                         </div>
-
                         <div class="col-auto">
                             <div class="d-flex align-items-center">
                                 <a href="{{ route('profile.show', $user->id) }}"
@@ -46,7 +44,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="col text-end">
                             <form action="{{ route('follow.store', $user->id) }}" method="POST">
                                 @csrf

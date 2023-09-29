@@ -4,40 +4,27 @@
 
 @section('content')
     @include('users.profile.header')
-    {{-- <p>USER to FOLLOWING realtionship {{$user->following}}</p> --}}
-
     @if ($user->following->isNotEmpty())
         <div class="row justify-content-center">
             <div class="col-4">
                 <h3 class="text-muted text-center">Following</h3>
                 @foreach ($user->following as $following)
-                    {{-- <p>THIS IS THE KEY {{$following}}</p> --}}
-
                     <div class="row align-items-center mt-3">
-                        {{-- image --}}
                         <div class="col-auto">
-                            {{-- <p>Connection from following to USER{{$following->following}}</p>
-                            <p>USER NAME{{$following->following->name}}</p>
-                            <p>USER ID{{$following->following->id}}</p>
-                            <p>USER AVATAR{{$following->following->avatar}}</p> --}}
-
-                            <a href="{{ route('profile.show', $following->following->id) }}">
-                                @if ($following->following->avatar)
-                                    <img src="{{ $following->following->avatar }}" alt="{{ $following->following->name }}"
-                                        class="rounded-circle avatar-sm">
-                                @else
-                                    <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
-                                @endif
+                            @if ($following->following->avatar)
+                                <img src="{{ $following->following->avatar }}" alt="{{ $following->following->name }}"
+                                    class="rounded-circle avatar-sm">
+                            @else
+                                <i class="fa-solid fa-circle-user text-secondary icon-sm"></i>
+                            @endif
                             </a>
                         </div>
-                        {{-- name --}}
                         <div class="col ps-0 text-truncate">
                             <a href="{{ route('profile.show', $following->following->id) }}"
                                 class="text-decoration-none text-dark fw-bold">
                                 {{ $following->following->name }}
                             </a>
                         </div>
-                        {{-- follow/following button --}}
                         <div class="col-auto text-end">
                             @if ($following->following->id != Auth::user()->id)
                                 @if ($following->following->isFollowed())

@@ -1,6 +1,5 @@
 <div class="card-header bg-white py-3">
     <div class="row align-items-center">
-        {{-- image --}}
         <div class="col-auto">
             <a href="{{ route('profile.show', $post->user->id) }}">
                 @if ($post->user->avatar)
@@ -10,19 +9,16 @@
                 @endif
             </a>
         </div>
-        {{-- name --}}
         <div class='col ps-0'>
             <a href="{{ route('profile.show', $post->user->id) }}"
                 class="text-decoration-none text-dark">{{ $post->user->name }}</a>
         </div>
-        {{-- ellipsis --}}
         <div class="col-auto">
             <div class="dropdown">
                 <button class="btn btn-sm shadow-none" data-bs-toggle="dropdown">
                     <i class="fa-solid fa-ellipsis"></i>
 
                 </button>
-                {{-- if useris authenticated display EDIT or DELETE menu. Else, display follow/unfollow --}}
                 @if (Auth::user()->id === $post->user->id)
                     <div class="dropdown-menu">
                         <a href="{{ route('post.edit', $post->id) }}" class="dropdown-item">
@@ -33,11 +29,10 @@
                             <i class="fa-regular fa-trash-can">Delete</i>
                         </button>
                     </div>
-                    {{-- include model here --}}
                     @include('users.posts.contents.modals.delete')
                 @else
                     <div class="dropdown-menu">
-                        <form action="{{route('follow.destroy',$post->user->id)}}" method="POST">
+                        <form action="{{ route('follow.destroy', $post->user->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="dropdown-item text-danger">Unfollow</button>
@@ -47,5 +42,4 @@
             </div>
         </div>
     </div>
-
 </div>

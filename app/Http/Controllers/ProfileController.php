@@ -34,10 +34,8 @@ class ProfileController extends Controller
         return view('users.profile.edit')->with('user', $user);
     }
 
-    // $_POST, $_FILE
     public function update(Request $request)
     {
-        // varidation
         $request->validate([
             'name' => 'required|min:1|max:50',
             'email' => 'required|email|max:50|unique:users,email,' . Auth::user()->id,

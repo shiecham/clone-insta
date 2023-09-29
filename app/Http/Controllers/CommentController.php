@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    //
     private $comment;
 
     public function __construct(Comment $comment)
@@ -28,13 +27,10 @@ class CommentController extends Controller
                 'comment_body' . $post_id . '.max' =>'The comment must not have more than 150 characters.'
             ]
         );
-
-        // $request->comment_body.$post_id
         $this->comment->body = $request->input('comment_body' . $post_id);
         $this->comment->user_id = Auth::user()->id;
         $this->comment->post_id = $post_id;
         $this->comment->save();
-
         return redirect()->back();
     }
 

@@ -66,7 +66,6 @@
                                 @endif
                             </div>
                         </div>
-                        {{-- Include modal here --}}
                         @include('admin.posts.modal.status')
                     </td>
                 </tr>

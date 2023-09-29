@@ -23,7 +23,6 @@ class PostsController extends Controller
 
     public function hide($id)
     {
-        // dd($id);
         $this->post->destroy($id);
         return redirect()->back();
     }

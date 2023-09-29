@@ -3,34 +3,11 @@
 @section('title', 'Home')
 
 @section('content')
-    {{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
     <div class="row gx-5">
-        {{-- Left --}}
         <div class="col-8">
             @forelse($all_posts as $post)
                 <div class="card mb-4">
-                    {{-- title --}}
                     @include('users.posts.contents.title')
-                    {{-- body --}}
                     @include('users.posts.contents.body')
                 </div>
             @empty
@@ -41,11 +18,7 @@
                 </div>
             @endforelse
         </div>
-
-
-        {{-- Right --}}
         <div class="col-4">
-            {{-- Profile Overview --}}
             <div class="row align-item-center mb-5 bg-white shadow-sm rounded-3 py-3">
                 <div class="col-auto">
                     <a href="{{ route('profile.show', Auth::user()->id) }}">
@@ -62,19 +35,16 @@
                         class="text-decoration-none text-dark fw-bold">{{ Auth::user()->name }}
                     </a>
                     <p class="text-muted mb-0">{{ Auth::user()->email }}</p>
-
                 </div>
-
             </div>
 
-            {{-- Suggestions --}}
             @if ($suggested_users)
                 <div class="row">
                     <div class="col-auto">
                         <p class="fw-bold text-secondary">Suggestion For You</p>
                     </div>
                     <div class="col text-end">
-                        <a href="{{route('home.suggested')}}" class="fw-bold text-dark text-decoration-none">
+                        <a href="{{ route('home.suggested') }}" class="fw-bold text-dark text-decoration-none">
                             See all
                         </a>
                     </div>
@@ -96,7 +66,6 @@
                                 class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a>
 
                         </div>
-
                         <div class="col-auto text-end">
 
                             <form action="{{ route('follow.store', $user->id) }}" method="POST">
@@ -105,15 +74,10 @@
                                     Follow
                                 </button>
                             </form>
-
                         </div>
-
-
                     </div>
                 @endforeach
             @endif
         </div>
-
-
     </div>
 @endsection

@@ -18,7 +18,6 @@ class HomeController extends Controller
         $this->user = $user;
     }
 
-    // get the user that the auth user is not following
     private function getSuggestedUsers()
     {
         $all_users = $this->user->all()->except(Auth::user()->id);
@@ -29,37 +28,7 @@ class HomeController extends Controller
                 $suggested_users[] = $user;
             }
         }
-        /**
-         * INITIAL STATE
-         * $all_user
-         * USERS TABLE
-         * 1 (ligin user) (EXCEPT)->except(Auth::user()->id);
-         * 2
-         * 3
-         *
-         * FOLLOWS TABLE
-         * follower_id    |   following_id
-         *    1                    2
-         *    2                    3
-         *    2                    1
-         *
-         * $suggested_user = [];
-         *
-         * LOOP
-         * ITR #1 user 2
-         * CONDITION = if(!user->isFollowed())
-         * RESULT = !TURE = FALSE
-         * $suggested_user = []
-         *
-         *
-         * ITR #2 user 3
-         *CONDITION = if(!user->isFollowed())
-         * RESULT = !FALSE = TRUE
-         * $suggested_user = [3]
-         *
-         */
 
-        // return array_slice($suggested_users, 0, 10);
         return $suggested_users;
     }
 
@@ -67,36 +36,10 @@ class HomeController extends Controller
     {
         $all_posts = $this->post->latest()->get();
         $home_posts = [];
-        /**
-         * LOGICAL OR OPERATOR
-         * T || T = T
-         * F || T = T
-         * T || F = T
-         * F || F = F
-         *
-         * ALL_POST ID's
-         * 1 = own by loginuser id=1
-         * 2 = user id 3
-         * 3 = own by user id =1
-         * 4 = own by user 2 followed by user 1
-         */
+
         foreach ($all_posts as $post) {
             if ($post->user->isFollowed() || $post->user->id === Auth::user()->id) {
                 $home_posts[] = $post;
-                /**
-                 * ITR 1:
-                 *  f || t = t
-                 *  $home_posts= [1]
-                 * ITR 2:
-                 *  f || f = f (SKIP  IF  CONDITTION)
-                 *  $home_posts= [1]
-                 * ITR 3:
-                 *  f || t = t
-                 *  $home_posts= [1] ->[3] = [1,3]
-                 * ITR 3:
-                 *  t || f = t
-                 *  $home_posts= [1,3] -> [4] = [1,3,4]
-                 */
             }
         }
         return $home_posts;
@@ -106,10 +49,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
 
     /**
      * Show the application dashboard.

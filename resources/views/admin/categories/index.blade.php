@@ -15,7 +15,6 @@
                     <i class="fa-solid fa-plus"></i> Add
                 </button>
             </div>
-            {{-- Error --}}
             @error('name')
                 <p class="text-danger small">{{ $message }}</p>
             @enderror
@@ -41,11 +40,9 @@
                             <td>{{ $category->categoryPost->count() }}</td>
                             <td>{{ $category->updated_at }}</td>
                             <td>
-                                {{-- edit button --}}
                                 <button class="btn btn-outline-warning btn-sm me-2" data-bs-toggle="modal"
                                     data-bs-target="#edit-category-{{ $category->id }}" title="Edit">
                                     <i class="fa-solid fa-pen"></i> </button>
-                                {{-- delete button --}}
                                 <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#delete-category-{{ $category->id }}" title="Delete">
                                     <i class="fa-solid fa-trash-can"></i></button>
@@ -76,6 +73,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection

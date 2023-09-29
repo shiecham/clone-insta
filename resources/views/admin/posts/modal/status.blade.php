@@ -1,4 +1,3 @@
-{{-- Hide --}}
 <div class="modal fade" id="hide-post-{{ $post->id }}">
     <div class="modal-dialog">
         <div class="modal-content border-danger">
@@ -23,8 +22,6 @@
     </div>
 </div>
 
-
-{{--    Unhide    --}}
 <div class="modal fade" id="unhide-post-{{ $post->id }}">
     <div class="modal-dialog">
         <div class="modal-content border-success">
@@ -38,10 +35,11 @@
             </div>
             <div class="modal-footer border-0">
 
-                <form action="{{route('admin.posts.unhide', $post->id)}}" method="POST">
+                <form action="{{ route('admin.posts.unhide', $post->id) }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <button type="button" class="btn btn-outline-success btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-outline-success btn-sm"
+                        data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-success btn-sm">Unhide</button>
                 </form>
             </div>

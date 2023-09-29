@@ -14,9 +14,7 @@
                 </div>
             </div>
             <div class="modal-footer border-0">
-                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button> --}}
-                <form action="{{route('post.destroy',$post->id)}}" method="POST">
+                <form action="{{ route('post.destroy', $post->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="button" class="btn btn btn-outline-danger btn-sm"

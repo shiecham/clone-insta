@@ -9,7 +9,6 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    //
     private $user;
 
     public function __construct(User $user)
@@ -31,36 +30,6 @@ class UsersController extends Controller
 
     public function activate($id)
     {
-        /**
-         * USERS TABLE
-         * 1    (deleted_at=time)
-         * 2     (deleted_at=NULL)
-         * 3    (deleted_at=time)
-         *
-         * reference is user id =3
-         * PART #1: $this->user
-         * [
-         *    1    (deleted_at=time)
-         *    2     (deleted_at=NULL)
-         *    3    (deleted_at=time)
-         * ]　
-         *
-         * PART #2: onlyTrashed()
-         * [
-         *    1    (deleted_at=time)
-         *    3    (deleted_at=time)
-         * ]
-         *
-         * PART #3: ->findOrFail($id),reference is user id =3
-         * [
-         *    3    (deleted_at=time)
-         * ]
-         *
-         * PART #4:->restore()
-         * [
-         *    3    (deleted_at=NULL)
-         * ]
-         */
         $this->user->onlyTrashed()->findOrFail($id)->restore();
         return redirect()->back();
     }

@@ -4,25 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }} | @yield('title')</title>
-
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-
-    {{-- font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-
-    <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
 </head>
 
@@ -40,15 +29,8 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    {{-- [SOON] Search bar here. Show this when user is log in. --}}
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav me-auto"></ul>
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -62,14 +44,11 @@
                                 </li>
                             @endif
                         @else
-                            {{-- Home --}}
                             <li class="nav-item" title="home">
                                 <a href="{{ route('index') }}" class="nav-link">
                                     <i class="fa-solid fa-house text-dark icon-sm"></i>
                                 </a>
                             </li>
-
-                            {{-- Create post  --}}
 
                             <li class="nav-item" title="Create Post">
                                 <a href="{{ route('post.create') }}" class="nav-link">
@@ -80,11 +59,6 @@
 
 
                             <li class="nav-item dropdown">
-                                {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a> --}}
-
                                 <button id="account-dropdown" class="btn shadow-none nav-link" data-bs-toggle="dropdown">
                                     @if (Auth::user()->avatar)
                                         <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->avatar }}"
@@ -95,29 +69,18 @@
                                 </button>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="account-dropdown">
-                                    {{-- Admin Cntorols --}}
                                     <a href="{{ route('admin.users') }}" class="dropdown-item">
                                         <i class="fa-solid fa-user-gear"></i>Admin
                                     </a>
                                     <hr class="dropdown-divider">
-
-
-                                    {{-- Profile --}}
                                     <a href="{{ route('profile.show', Auth::user()->id) }}" class="dropdown-item">
                                         <i class="fa-solid fa-circle-user"></i>Profile
                                     </a>
-
-
-
-                                    {{-- Logout --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <i class="fa-solid fa-right-from-bracket"></i>{{ __('Logout') }}
                                     </a>
-
-
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -130,11 +93,8 @@
         </nav>
 
         <main class="py-4">
-            {{-- @yield('content') --}}
             <div class="container">
                 <div class="row justify-content-center">
-                    {{-- Admin Controls --}}
-                    {{-- <p>{{request()}}</p> --}}
                     @if (request()->is('admin/*'))
                         <div class="col-3">
                             <div class="list-group">
@@ -146,20 +106,17 @@
                                     class="list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
                                     <i class="fa-solid fa-newspaper"></i>
                                     Posts</a>
-                                <a href="{{ route('admin.categories') }}" class="list-group-item {{ request()->is('admin/categories') ? 'active' : '' }}">
+                                <a href="{{ route('admin.categories') }}"
+                                    class="list-group-item {{ request()->is('admin/categories') ? 'active' : '' }}">
                                     <i class="fa-solid fa-tags"></i>
                                     Categories</a>
-
                             </div>
                         </div>
                     @endif
                     <div class="col-9">
                         @yield('content')
                     </div>
-
                 </div>
-
-
             </div>
         </main>
     </div>

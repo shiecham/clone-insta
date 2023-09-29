@@ -1,9 +1,6 @@
-{{-- Edit --}}
-
-<!-- Modal -->
 <div class="modal fade" id="edit-category-{{ $category->id }}">
     <div class="modal-dialog">
-        <form action="{{route('admin.categories.update',$category->id )}}" method="POST">
+        <form action="{{ route('admin.categories.update', $category->id) }}" method="POST">
             @csrf
             @method('PATCH')
             <div class="modal-content border-warning">
@@ -26,10 +23,9 @@
         </form>
     </div>
 </div>
-{{-- Delete --}}
 <div class="modal fade" id="delete-category-{{ $category->id }}">
     <div class="modal-dialog">
-        <form action="{{route('admin.categories.destroy',$category->id )}}" method="POST">
+        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <div class="modal-content border-danger">
@@ -39,12 +35,12 @@
                     </h1>
                 </div>
                 <div class="modal-body">
-                  <p>Are you sure you want to delete <span class="fw-bold">{{$category->name}}</span>?</p>
-                  <p class="fw-light">This action will affect all the posts under this category. Posts without a category will fall under Uncategorized.</p>
+                    <p>Are you sure you want to delete <span class="fw-bold">{{ $category->name }}</span>?</p>
+                    <p class="fw-light">This action will affect all the posts under this category. Posts without a
+                        category will fall under Uncategorized.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger btn-sm"
-                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                 </div>
             </div>

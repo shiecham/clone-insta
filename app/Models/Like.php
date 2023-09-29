@@ -9,7 +9,7 @@ class Like extends Model
 {
     use HasFactory;
 
-    public $timestamps = false; //disable the automatic creation of Created_at and updated_at
+    public $timestamps = false; 
 
     public function post()
     {
